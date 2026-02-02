@@ -379,3 +379,23 @@ const books = [
 //   console.log(`${names.length} goals were scored in total.`);
 // };
 // printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+
+// 8.1
+// let pageSum = 0;
+// for (const book of books) {
+//   pageSum += book.pages;
+// }
+// console.log(pageSum);
+// 8.2
+// const allAuthors = [];
+// for (const book of books) {
+//   if (typeof book.author === 'string') allAuthors.push(book.author);
+//   else allAuthors.push(...book.author);
+// }
+// console.log(allAuthors);
+// 8.3
+// for (const [i, author] of allAuthors.entries()) {
+//   console.log(`${i + 1}. ${author}`);
+// }
+
+// 9.1
