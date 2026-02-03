@@ -399,3 +399,47 @@ const books = [
 // }
 
 // 9.1
+// const bookData = [
+//   ['title', 'Computer Networking: A Top-Down Approach'],
+//   ['author', ['James F. Kurose', 'Keith W. Ross']],
+//   ['publisher', 'Addison Wesley'],
+// ];
+// const newBook = {
+//   [bookData[0][0]]: bookData[0][1],
+//   [bookData[1][0]]: bookData[1][1],
+//   [bookData[2][0]]: bookData[2][1],
+// };
+// 9.2
+// const pages = 880;
+// const newBook2 = {
+//   title: 'The C Programming Language',
+//   author: ['Brian W. Kernighan', 'Dennis M. Ritchie'],
+//   pages,
+// };
+// console.log(newBook2);
+
+// 10.1
+// function getFirstKeyword(book) {
+//   const keyword = book.keywords?.[0];
+//   console.log(keyword);
+// }
+// getFirstKeyword(books[0]);
+
+// 11.1
+// const entries = [];
+// for (const key of Object.keys(books[0].thirdParty.goodreads)) {
+//   entries.push([key]);
+// }
+// 11.2
+// for (const [i, value] of Object.values(
+//   books[0].thirdParty.goodreads,
+// ).entries()) {
+//   entries[i].push(value);
+// }
+// 11.3
+// const entries2 = Object.entries(books[0].thirdParty.goodreads);
+// 11.4
+// console.log(entries);
+// console.log(entries2);
+
+// Challenge #2
