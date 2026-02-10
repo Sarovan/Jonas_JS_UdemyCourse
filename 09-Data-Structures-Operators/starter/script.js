@@ -484,3 +484,148 @@ const game = {
 // 12.6
 // uniqueKeywords.clear();
 // console.log(uniqueKeywords);
+
+// 13.1
+// const bookMap = new Map([
+//   ['title', 'Clean Code'],
+//   ['author', 'Robert C. Martin'],
+// ]);
+// 13.2
+// bookMap.set('pages', 464);
+// 13.3
+// console.log(`${bookMap.get('title')} by ${bookMap.get('author')}`);
+// 13.4
+// console.log(bookMap.size);
+// 13.5
+// if (bookMap.has('author')) console.log('The author of the book is known');
+
+// 14.1
+// const firstBookMap = new Map(Object.entries(books[0]));
+// console.log(firstBookMap);
+// 14.2
+// for (const [k, v] of firstBookMap) {
+//   if (typeof v === 'number') console.log(k);
+// }
+
+// Challenge #3
+const gameEvents = new Map([
+  [17, '⚽️ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽️ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'],
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽️ GOAL'],
+  [80, '⚽️ GOAL'],
+  [92, '🔶 Yellow card'],
+]);
+// const events = [...new Set(gameEvents.values())];
+// console.log(events);
+// gameEvents.delete(64);
+// console.log(gameEvents);
+// console.log(
+//   `An event happened, on average, every ${90 / gameEvents.size} minutes.`,
+// );
+// for (const [k, v] of gameEvents) {
+//   console.log(`[${k <= 45 ? 'FIRST' : 'SECOND'} HALF] ${k}: ${v}`);
+// }
+
+// 15.1
+// const bookISBN = books[0].ISBN;
+// console.log(bookISBN[6], bookISBN[4], bookISBN[9], bookISBN[8]);
+// 15.2
+// const quote =
+//   'A computer once beat me at chess, but it was no match for me at kick boxing';
+// console.log(quote.indexOf('chess'));
+// 15.3
+// console.log(quote.slice(quote.indexOf('boxing')));
+// 15.4
+// const isContributor = function (author) {
+//   return author.indexOf('Contributor') > -1;
+// };
+// console.log(isContributor('Julie Sussman (Contributor)'));
+
+// 16.1
+// function normalizeAuthorName(author) {
+//   const basicName = author.toLowerCase().trim().replace('(contributor)', '');
+//   const firstname =
+//     basicName[0].toUpperCase() + basicName.slice(1, basicName.indexOf(' '));
+//   const lastname =
+//     basicName[basicName.indexOf(' ') + 1].toUpperCase() +
+//     basicName.slice(basicName.indexOf(' ') + 2);
+//   console.log(`${firstname} ${lastname}`);
+// }
+// normalizeAuthorName('  JuliE sussMan (Contributor)');
+// 16.2
+// const title = books[1].title;
+// const newBookTitle = title.replace('Programs', 'Software');
+// console.log(title, newBookTitle);
+// 16.3
+// function logBookTheme(title) {
+//   const lowerTitle = title.toLowerCase();
+//   if (lowerTitle.startsWith('computer'))
+//     console.log('This book is about computers');
+//   else if (
+//     lowerTitle.includes('algorithms') &&
+//     lowerTitle.includes('structures')
+//   )
+//     console.log('This book is about algorithms and data structures');
+//   else if (
+//     (lowerTitle.endsWith('system') || lowerTitle.endsWith('systems')) &&
+//     !lowerTitle.includes('operating')
+//   )
+//     console.log(
+//       'This book is about some systems, but definitely not about operating systems',
+//     );
+// }
+// logBookTheme('asdfsa algorithms operating sadfasd system');
+
+// 17.1
+// function logBookCategories(categories) {
+//   const categoriesArray = categories.split(';');
+//   for (const category of categoriesArray) console.log(category);
+// }
+// const bookCategories =
+//   'science;computing;computer science;algorithms;business;operating systems;networking;electronics';
+// logBookCategories(bookCategories);
+// 17.2
+// function getKeywordsAsString(books) {
+//   const keywordsArray = [];
+//   for (const book of books) {
+//     keywordsArray.push(...book.keywords);
+//   }
+//   const keywordsUnique = [...new Set(keywordsArray)];
+//   console.log(keywordsUnique.join(';'));
+// }
+// getKeywordsAsString(books);
+// 17.3
+// const bookChapters = [
+//   ['The Basics', 14],
+//   ['Sorting', 254],
+//   ['Searching', 372],
+//   ['Graphs', 526],
+//   ['Strings', 706],
+// ];
+// function logBookChapters(chapters) {
+//   for (const [title, page] of chapters) {
+//     console.log(`${title.padEnd(25, '_')} ${page}`);
+//   }
+// }
+// logBookChapters(bookChapters);
+
+// Challenge 4
+// document.body.append(document.createElement('textarea'));
+// document.body.append(document.createElement('button'));
+// document.querySelector('button').addEventListener('click', parseText);
+// function parseText() {
+//   const text = document.querySelector('textarea').value;
+//   const textArr = text.split('\n');
+//   for (const [i, word] of textArr.entries()) {
+//     let [first, second] = word.trim().toLowerCase().split('_');
+//     second = second[0].toUpperCase() + second.slice(1);
+//     const fullWord = first + second;
+//     console.log(`${fullWord.padEnd(20, ' ')}${'✅'.repeat(i + 1)}`);
+//   }
+// }
