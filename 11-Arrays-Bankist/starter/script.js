@@ -159,6 +159,18 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some((mov) => mov > 0.1 * amount))
+    currentAccount.movements.push(amount);
+
+  updateUI(currentAccount);
+  inputLoanAmount.value = '';
+});
+
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -270,3 +282,9 @@ GOOD LUCK 😀
 //     .reduce((total, age, _, arr) => total + age / arr.length, 0);
 
 // console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const lastLarge = movements.findLastIndex((mov) => mov > 2000);
+// console.log(
+//   `Your latest large movement was ${movements.length - lastLarge} movements ago`,
+// );
