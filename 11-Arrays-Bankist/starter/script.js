@@ -62,10 +62,12 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // Code
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
-  movements.forEach(function (mov, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
@@ -189,6 +191,15 @@ btnClose.addEventListener('click', function (e) {
   labelWelcome.textContent = 'Log in to get started';
 });
 
+let sorted = false;
+
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  sorted = !sorted;
+  displayMovements(currentAccount.movements, sorted);
+});
+
 /////////////////////////////////////////////////
 
 // LECTURES
@@ -309,68 +320,68 @@ BONUS: What's the average weight of the heaviest breed that likes to fetch? HINT
 TEST DATA:
 */
 
-const breeds = [
-  {
-    breed: 'German Shepherd',
-    averageWeight: 32,
-    activities: ['fetch', 'swimming'],
-  },
-  {
-    breed: 'Dalmatian',
-    averageWeight: 24,
-    activities: ['running', 'fetch', 'agility'],
-  },
-  {
-    breed: 'Labrador',
-    averageWeight: 28,
-    activities: ['swimming', 'fetch'],
-  },
-  {
-    breed: 'Beagle',
-    averageWeight: 12,
-    activities: ['digging', 'fetch'],
-  },
-  {
-    breed: 'Husky',
-    averageWeight: 26,
-    activities: ['running', 'agility', 'swimming'],
-  },
-  {
-    breed: 'Bulldog',
-    averageWeight: 36,
-    activities: ['sleeping'],
-  },
-  {
-    breed: 'Poodle',
-    averageWeight: 18,
-    activities: ['agility', 'fetch'],
-  },
-];
+// const breeds = [
+//   {
+//     breed: 'German Shepherd',
+//     averageWeight: 32,
+//     activities: ['fetch', 'swimming'],
+//   },
+//   {
+//     breed: 'Dalmatian',
+//     averageWeight: 24,
+//     activities: ['running', 'fetch', 'agility'],
+//   },
+//   {
+//     breed: 'Labrador',
+//     averageWeight: 28,
+//     activities: ['swimming', 'fetch'],
+//   },
+//   {
+//     breed: 'Beagle',
+//     averageWeight: 12,
+//     activities: ['digging', 'fetch'],
+//   },
+//   {
+//     breed: 'Husky',
+//     averageWeight: 26,
+//     activities: ['running', 'agility', 'swimming'],
+//   },
+//   {
+//     breed: 'Bulldog',
+//     averageWeight: 36,
+//     activities: ['sleeping'],
+//   },
+//   {
+//     breed: 'Poodle',
+//     averageWeight: 18,
+//     activities: ['agility', 'fetch'],
+//   },
+// ];
 
-// 1
-const huskyWeight = breeds.find((dog) => dog.breed === 'Husky').averageWeight;
-// 2
-const dogBothActivities = breeds.find(
-  (dog) =>
-    dog.activities.includes('fetch') && dog.activities.includes('running'),
-).breed;
-// 3
-const allActivities = breeds.reduce(
-  (arr, breed) => arr.concat(breed.activities),
-  [],
-);
-// 4
-const uniqueActivities = new Set(allActivities);
-// 5
-const swimmingAdjacent = new Set(allActivities);
-swimmingAdjacent.delete('swimming');
-// 6
-console.log(breeds.every((breed) => breed.averageWeight >= 10));
-// 7
-console.log(breeds.some((breed) => breed.activities.length >= 3));
-// Bonus
-const heaviestWeight = Math.max(
-  ...breeds
-    .filter((breed) => breed.activities.includes('fetch'))
-    .reduce((arr, accum) => arr.concat(accum.averageWeight), []),
-);
+// // 1
+// const huskyWeight = breeds.find((dog) => dog.breed === 'Husky').averageWeight;
+// // 2
+// const dogBothActivities = breeds.find(
+//   (dog) =>
+//     dog.activities.includes('fetch') && dog.activities.includes('running'),
+// ).breed;
+// // 3
+// const allActivities = breeds.reduce(
+//   (arr, breed) => arr.concat(breed.activities),
+//   [],
+// );
+// // 4
+// const uniqueActivities = new Set(allActivities);
+// // 5
+// const swimmingAdjacent = new Set(allActivities);
+// swimmingAdjacent.delete('swimming');
+// // 6
+// console.log(breeds.every((breed) => breed.averageWeight >= 10));
+// // 7
+// console.log(breeds.some((breed) => breed.activities.length >= 3));
+// // Bonus
+// const heaviestWeight = Math.max(
+//   ...breeds
+//     .filter((breed) => breed.activities.includes('fetch'))
+//     .reduce((arr, accum) => arr.concat(accum.averageWeight), []),
+// );
