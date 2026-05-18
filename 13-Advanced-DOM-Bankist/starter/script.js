@@ -8,6 +8,7 @@ const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
+const imgTargets = document.querySelectorAll('img[data-src]');
 
 ///////////////////////////////////////
 // Modal window
@@ -158,4 +159,54 @@ const sectionObserver = new IntersectionObserver(revealSec, {
 sections.forEach(function (section) {
   sectionObserver.observe(section);
   section.classList.add('section--hidden');
+});
+
+// Lazy loading images
+
+const lazyLoad = function (entries, observer) {
+  // console.log(entries);
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+
+  entry.target.src = entry.target.dataset.src;
+  // entry.target.classList.remove('lazy-img');
+  entry.target.addEventListener('load', () =>
+    entry.target.classList.remove('lazy-img'),
+  );
+  observer.unobserve(entry.target);
+};
+
+const imgObserver = new IntersectionObserver(lazyLoad, {
+  root: null,
+  threshold: 0,
+  rootMargin: '200px',
+});
+
+imgTargets.forEach((i) => imgObserver.observe(i));
+
+// Slider
+const slides = document.querySelectorAll('.slide');
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
+
+let curSlide = 0;
+
+const goToSlide = function (slide) {
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${(i - slide) * 100}%)`),
+  );
+};
+
+goToSlide(0);
+
+btnRight.addEventListener('click', function (e) {
+  curSlide++;
+  curSlide = (curSlide + slides.length) % 3;
+  goToSlide(curSlide);
+});
+
+btnLeft.addEventListener('click', function (e) {
+  curSlide--;
+  curSlide = (curSlide + slides.length) % 3;
+  goToSlide(curSlide);
 });
